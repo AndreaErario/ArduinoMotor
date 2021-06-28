@@ -34,9 +34,12 @@ void loop() {
     }
  
     if (state == HIGH) {
-        if (timer - stateTime <= 10000) {
+        if (timer - stateTime <= 3500) {
             digitalWrite(motorPin1, rotation);
             digitalWrite(motorPin2, !rotation);
+      } else if (timer - stateTime <= 10000 and timer - stateTime > 3500) {
+            digitalWrite(motorPin1, LOW);
+            digitalWrite(motorPin2, LOW);
         } else {
             rotation = !rotation;
             stateTime = millis();
@@ -48,4 +51,4 @@ void loop() {
 
     previous = reading;
     timer = millis();
-} 
+}
